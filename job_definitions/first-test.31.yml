@@ -21,7 +21,7 @@ transfer_option:
     input_direct: true
     params:
     - name: limit
-      value: "*****"
+      value: '555'
     custom_variables: []
     parser:
       type: csv
