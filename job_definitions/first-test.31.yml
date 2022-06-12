@@ -1,0 +1,117 @@
+---
+id: 31
+name: first-test
+description: ''
+user:
+  id: 1
+  email: admin@primenumber.co.jp
+transfer_option:
+  transfer_type: normal
+  in:
+    type: http
+    url: https://www.city.sumida.lg.jp/kuseijoho/sumida_info/opendata/opendata_ichiran/aed_data.files/shisetsu_aed_20210219.csv
+    method: GET
+    user_agent: ''
+    charset: SJIS
+    open_timeout: 2000
+    read_timeout: 10000
+    max_retries: 5
+    retry_interval: 10000
+    request_interval: 0
+    input_direct: true
+    params:
+    - name: limit
+      value: "*****"
+    custom_variables: []
+    parser:
+      type: csv
+      delimiter: ","
+      skip_header_lines: 2
+      trim_if_not_quoted: false
+      quotes_in_quoted_fields: ACCEPT_ONLY_RFC4180_ESCAPED
+      allow_optional_columns: false
+      allow_extra_columns: false
+      max_quoted_size_limit: 131072
+      stop_on_invalid_record: true
+      default_timezone: UTC
+      default_date: '1970-01-01'
+      newline: LF
+      charset: UTF-8
+      columns:
+      - name: c0
+        type: string
+      - name: c1
+        type: string
+      - name: c2
+        type: double
+      - name: c3
+        type: double
+      - name: c4
+        type: string
+      - name: c5
+        type: string
+      - name: c6
+        type: string
+      quote: "\""
+      escape: "\""
+    decoders: []
+  out:
+    type: bigquery
+    bigquery_connection:
+      id: 1
+      name: "[QA]bigquery test"
+    dataset: test_komiya
+    table: test
+    auto_create_dataset: true
+    mode: replace
+    location: US
+    open_timeout_sec: 300
+    timeout_sec: 300
+    send_timeout_sec: 300
+    read_timeout_sec: 300
+    retries: 5
+    allow_quoted_newlines: true
+    column_options: []
+    template_table: ''
+    time_partitioning:
+      type: 
+      field: ''
+      expiration_ms: 
+    custom_variables: []
+  data_settings:
+    columns:
+    - name: c1
+      src: c1
+      default: ''
+      type: string
+    - name: c0
+      src: c0
+      default: ''
+      type: string
+    - name: c2
+      src: c2
+      default: ''
+      type: double
+    - name: c3
+      src: c3
+      default: ''
+      type: double
+    - name: c4
+      src: c4
+      default: ''
+      type: string
+    - name: c5
+      src: c5
+      default: ''
+      type: string
+    - name: c6
+      src: c6
+      default: ''
+      type: string
+  is_runnable_concurrently: false
+  retry_limit: 0
+group: 
+labels: []
+job_schedules: []
+triggers: []
+notifications: []
